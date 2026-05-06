@@ -95,13 +95,18 @@ So key MUST already exist in AWS.(create manually through aws console)
 Generate through ssh-keygen 
 
 **Step 1: Create local key**
+
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/ec2_keypair
+
 **Step 2: Import into AWS**
+
 aws ec2 import-key-pair \
   --key-name ec2_keypair \
   --public-key-material fileb://~/.ssh/ec2_keypair.pub \
   --region us-east-1
+  
 **Step 3: Verify**
+
 aws ec2 describe-key-pairs --key-names ec2_keypair
 
 **7. Navigate to the Terraform Directory**
