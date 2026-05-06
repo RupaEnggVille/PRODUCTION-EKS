@@ -36,25 +36,25 @@ choco install terraform -y
 terraform -version
 
 
-**For EKS-Project**
+# **For EKS-Project**
 
 Steps to Clone and Run the Project
 
-**1. Create a Local Folder**
+## **1. Create a Local Folder**
 
 Create a folder named "production-eks" in any drive in your local.
 
-**2. Clone the Repository**
+## **2. Clone the Repository**
 
 Open VS Code (or Git Bash) and clone the repository to production-eks folder as destination.
 
 [git clone https://github.com/RupaEnggVille/PRODUCTION-EKS.git]
 
-**3. In AWS Console**
+## **3. In AWS Console**
 
 Create an IAM user with AdministratorAccess in your AWS account and generate access & secret keys for the user.
 
-**Configure AWS CLI**
+### **Configure AWS CLI**
 
 Then configure the AWS CLI using the following command:
 
@@ -62,18 +62,18 @@ aws configure
 
 Set: AWS Access Key, Secret Key, Region → us-east-1, Output Format
 
-**4. Create an S3 backend bucket**
+## **4. Create an S3 backend bucket**
 
-If your backend.tf uses S3:
+### If your backend.tf uses S3:
 Create an S3 bucket through aws console or through command (after aws configure using AWS CLI)
 
 aws s3 mb s3://your-terraform-state-bucket --region us-east-1
 
 Also ensure DynamoDB table exists if state locking is used.
 
-**5. After Cloning the Repository**
+## **5. After Cloning the Repository**
 
-Make the following changes:
+### Make the following changes:
 
 Update the region in dev.tfvars based on the location where you want to create your infrastructure (such as EKS, VPC, etc.).
 Example:
@@ -83,18 +83,18 @@ Ensure the region in backend.tf matches the region where your Terraform state st
 
 Also Update other Variable Values in dev.tfvars like key-pair, AMI-Id, Instance type (ec2 & eks), capacity, etc.
 
-**6. Create Key-pair for EC2 & EKS cluster (VERY IMPORTANT)**
+## **6. Create Key-pair for EC2 & EKS cluster (VERY IMPORTANT)**
 
-**If your project uses data "aws_key_pair"**
+### **If your project uses data "aws_key_pair"**
 
 So key MUST already exist in AWS.(create manually through aws console)
 
 "Make sure that the key-pair name should match with the variable value in dev.tfvars."
 
-**If you use resource "aws_key_pair"**
+### **If you use resource "aws_key_pair"**
 Generate through ssh-keygen 
 
-**Step 1: Create local key**
+#### **Step 1: Create local key**
 
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/ec2_keypair
 
