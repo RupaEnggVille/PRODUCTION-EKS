@@ -94,7 +94,7 @@ So key MUST already exist in AWS.(create manually through aws console)
 ### **If you use resource "aws_key_pair"**
 Generate through ssh-keygen 
 
-#### **Step 1: Create local key**
+### **Step 1: Create local key**
 
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/ec2_keypair
 
