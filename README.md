@@ -98,24 +98,24 @@ Generate through ssh-keygen
 
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/ec2_keypair
 
-**Step 2: Import into AWS**
+### **Step 2: Import into AWS**
 
 aws ec2 import-key-pair \
   --key-name ec2_keypair \
   --public-key-material fileb://~/.ssh/ec2_keypair.pub \
   --region us-east-1
   
-**Step 3: Verify**
+### **Step 3: Verify**
 
 aws ec2 describe-key-pairs --key-names ec2_keypair
 
-**7. Navigate to the Terraform Directory**
+## **7. Navigate to the Terraform Directory**
 
 Always run Terraform commands from the folder where main.tf exists:
 
 cd EKS-Project/terraform/EKS
 
-**8. Initialize Terraform and validate it**
+## **8. Initialize Terraform and validate it**
 
 terraform init
 
@@ -125,31 +125,40 @@ terraform validate
 
 This will check whether the configuration is valid or not.
 
-**7. Plan the Infrastructure**
+## **7. Plan the Infrastructure**
 
 terraform plan -var-file="dev.tfvars"
 
-Check carefully:
+**Check carefully:**
 VPC creation, EKS cluster ,Node groups, EC2 bastion, IAM roles
 
-**8. Apply the Changes**
+## **8. Apply the Changes**
 
 terraform apply -var-file="dev.tfvars"
 Type: yes
 
-**9. Post Deployment (Bastion Host Access)**
+or use 
 
-Because cluster is private:
+terraform apply -var-file="dev.tfvars" --auto-approve
+
+## **9. Post Deployment (Bastion Host Access)**
+
+### Because cluster is private:
 
 SSH into Bastion
+
 ssh -i ~/.ssh/ec2_keypair ubuntu@<bastion-public-ip>
+
 Configure Kubernetes access
+
 aws configure
+
 aws eks update-kubeconfig --region us-east-1 --name eks-demo
 
-Verify:
+### Verify:
 
 kubectl get nodes
+
 11. Install Helm (inside bastion)
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh
