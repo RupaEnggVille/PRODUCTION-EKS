@@ -1,8 +1,8 @@
-**Prerequisites Setup for This Repository (AWS CLI + Terraform via Chocolatey)**
+#**Prerequisites Setup for This Repository (AWS CLI + Terraform via Chocolatey)**
 
 Before running this EKS Terraform project, install the required tools on your system using Chocolatey.
 
-**Install Chocolatey (if not already installed)**
+##**Install Chocolatey (if not already installed)**
 
 Open PowerShell as Administrator and install Chocolatey:
 
@@ -11,40 +11,40 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; `
 [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
 iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-**Verify installation:**
+##**Verify installation:**
 
 choco -v
 
-**Install AWS CLI using Chocolatey**
+##**Install AWS CLI using Chocolatey**
 
-**Install AWS CLI:**
+###**Install AWS CLI:**
 
 choco install awscli -y
 
-**Verify:**
+###**Verify:**
 
 aws --version
 
-**Install Terraform using Chocolatey**
+##**Install Terraform using Chocolatey**
 
-**Install Terraform:**
+###**Install Terraform:**
 
 choco install terraform -y
 
-**Verify:**
+###**Verify:**
 
 terraform -version
 
 
-**For EKS-Project**
+#**For EKS-Project**
 
 Steps to Clone and Run the Project
 
-**1. Create a Local Folder**
+##**1. Create a Local Folder**
 
 Create a folder named "production-eks" in any drive in your local.
 
-**2. Clone the Repository**
+##**2. Clone the Repository**
 
 Open VS Code (or Git Bash) and clone the repository to production-eks folder as destination.
 
