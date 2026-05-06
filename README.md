@@ -2,7 +2,7 @@
 
 Before running this EKS Terraform project, install the required tools on your system using Chocolatey.
 
-**Install Chocolatey (if not already installed)**
+## **Install Chocolatey (if not already installed)**
 
 Open PowerShell as Administrator and install Chocolatey:
 
@@ -11,27 +11,27 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; `
 [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
 iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-**Verify installation:**
+### **Verify installation:**
 
 choco -v
 
-**Install AWS CLI using Chocolatey**
+## **Install AWS CLI using Chocolatey**
 
-**Install AWS CLI:**
+### **Install AWS CLI:**
 
 choco install awscli -y
 
-**Verify:**
+### **Verify:**
 
 aws --version
 
-**Install Terraform using Chocolatey**
+## **Install Terraform using Chocolatey**
 
-**Install Terraform:**
+### **Install Terraform:**
 
 choco install terraform -y
 
-**Verify:**
+### **Verify:**
 
 terraform -version
 
