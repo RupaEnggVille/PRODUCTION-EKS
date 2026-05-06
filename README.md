@@ -1,4 +1,4 @@
-**Prerequisites Setup for This Repository (AWS CLI + Terraform via Chocolatey)**
+# **Prerequisites Setup for This Repository (AWS CLI + Terraform via Chocolatey)**
 
 Before running this EKS Terraform project, install the required tools on your system using Chocolatey.
 
