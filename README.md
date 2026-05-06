@@ -141,7 +141,9 @@ or use
 
 terraform apply -var-file="dev.tfvars" --auto-approve
 
-## **9. Post Deployment (Bastion Host Access)**
+## **9. Post Provisioning Setup (Inside Bastion)**
+
+After terraform completes
 
 ### Because cluster is private:
 
