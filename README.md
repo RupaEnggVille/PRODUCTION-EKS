@@ -148,7 +148,7 @@ After terraform completes
 ### Because cluster is private: 
 SSH into Bastion to access EKS cluster nodes
 
-ssh -i ~/.ssh/ec2_keypair ubuntu@<bastion-public-ip>
+ssh -i ~/.ssh/ec2_keypair ubuntu@bastion-public-ip
 
 **To Configure Kubernetes access, configure AWS credentials in Bastion.**
 
@@ -165,7 +165,9 @@ kubectl get nodes
 ## **10. Install Helm (inside bastion)**
 
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
 chmod 700 get_helm.sh
+
 ./get_helm.sh
 
 ## **11. Add helm Repository to Install AWS Load Balancer Controller**
@@ -182,12 +184,12 @@ helm repo update
 
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
-  --set clusterName=eks-demo \
+  --set clusterName=dev-eks-demo \
   --set region=us-east-1 \
-  --set vpcId=<vpc-id> \
-  --set serviceAccount.annotations."eks\.amazonaws\.com/role-arn"=<IAM-role>
+  --set vpcId=vpc-id \
+  --set serviceAccount.annotations."eks\.amazonaws\.com/role-arn"=IAM-role
 
-**Replace cluster name, region, VPC Id, AWS Load Balancer Controller IAM role ARN**
+**Replace the values cluster name, region, VPC Id, AWS Load Balancer Controller IAM role ARN**
 
 ### Verify:
 
@@ -201,14 +203,14 @@ git clone https://github.com/RupaEnggVille/PRODUCTION-EKS.git
 
 cd PRODUCTION-EKS/EKS-Project/k8s/
 
-## **12. Deploy Microservices**
+## **13. Deploy Microservices**
 
 kubectl apply -f ns.yaml
 kubectl apply -f product.yaml
 kubectl apply -f cart.yaml
 kubectl apply -f payments.yaml
 
-## Ingress Deployment
+# Ingress Deployment
 
 ## **13. Path-Based Routing:**
 
