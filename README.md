@@ -145,32 +145,40 @@ terraform apply -var-file="dev.tfvars" --auto-approve
 
 After terraform completes
 
-### Because cluster is private:
-
-SSH into Bastion
+### Because cluster is private: 
+SSH into Bastion to access EKS cluster nodes
 
 ssh -i ~/.ssh/ec2_keypair ubuntu@<bastion-public-ip>
 
-Configure Kubernetes access
+**To Configure Kubernetes access, configure AWS credentials in Bastion.**
 
 aws configure
 
+**Update .kube/config file** 
+
 aws eks update-kubeconfig --region us-east-1 --name eks-demo
 
-### Verify:
+### Verify Cluster:
 
 kubectl get nodes
 
-11. Install Helm (inside bastion)
+## **10. Install Helm (inside bastion)**
+
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh
 ./get_helm.sh
 
-12. Install AWS Load Balancer Controller
+## **11. Add helm Repository to Install AWS Load Balancer Controller**
+
+### Add Helm repository for EKS:
+
 helm repo add eks https://aws.github.io/eks-charts
+
+### Update helm repository:
+
 helm repo update
 
-Install:
+### Install AWS Load Balancer controller:
 
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
@@ -179,16 +187,42 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set vpcId=<vpc-id> \
   --set serviceAccount.annotations."eks\.amazonaws\.com/role-arn"=<IAM-role>
 
-Verify:
+**Replace cluster name, region, VPC Id, AWS Load Balancer Controller IAM role ARN**
+
+### Verify:
 
 kubectl get deployment -n kube-system
 
-13. Deploy Microservices
+## **12. Clone the Source code Repository for manifest files Or Create Manifest files manually in Bastion**
+
+git clone https://github.com/RupaEnggVille/PRODUCTION-EKS.git
+
+**change the working directory to k8s:**
+
+cd PRODUCTION-EKS/EKS-Project/k8s/
+
+## **12. Deploy Microservices**
+
 kubectl apply -f ns.yaml
 kubectl apply -f product.yaml
 kubectl apply -f cart.yaml
 kubectl apply -f payments.yaml
-16. Ingress Deployment (HTTP ALB)
+
+## Ingress Deployment
+
+## **13. Path-Based Routing:**
+
+### Ingress Deployment (HTTP ALB)
+
+Before applying ingress.yaml comment listen-ports, certificate-arn & ssl-redirect lines under annotations.
+
+vim ingress.yaml
+
+#alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}, {"HTTP": 80}]'
+#alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:071325923620:certificate/e6c8ab5f-3dcd-42b6-bbbb-2ff4e2b811fc
+#alb.ingress.kubernetes.io/ssl-redirect: '443'
+
+
 kubectl apply -f ingress.yaml
 
 kubectl get ingress
