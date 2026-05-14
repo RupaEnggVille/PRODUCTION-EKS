@@ -27,8 +27,8 @@ Core AWS Services Used
 - AWS Certificate Manager
 
 <img src="EKS-Project/images/vpc.png">
-<img src="./images/eks.png">
-<img src="./images/k8s.png">
+<img src="EKS-Project/images/eks.png">
+<img src="EKS-Project/images/k8s.png">
 
 ## Infrastructure Provisioned with Terraform
 ### Networking (Custom VPC)
