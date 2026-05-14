@@ -26,7 +26,7 @@ Core AWS Services Used
 - Amazon Route 53
 - AWS Certificate Manager
 
-<img src="./images/vpc.png">
+<img src="EKS-Project/images/vpc.png">
 <img src="./images/eks.png">
 <img src="./images/k8s.png">
 
