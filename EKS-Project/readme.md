@@ -1,4 +1,4 @@
-# **Production-Grade AWS EKS Deployment with ALB, TLS & Route53 (Terraform Automated)**
+# **Production-Grade AWS EKS Deployment with ALB, DNS & TLS (Terraform Automated)**
 
 ## 📌 Overview
 
