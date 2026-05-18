@@ -24,7 +24,7 @@ Core AWS Services Used
 
 <img src="./images/vpc.png">
 <img src="./images/eks.png">
-<img src="./images/k8s.png">
+<img src="./images/architecture.png">
 <img src="./images/traffic.png">
 
 ## Infrastructure Provisioned with Terraform
