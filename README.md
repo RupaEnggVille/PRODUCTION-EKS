@@ -113,7 +113,7 @@ terraform -version
 ## **1.Clone the repository to local: create a empty directory in local .Then clone it**
 
 or 
-## **in vs code-->click on terminal-->new terminal-->select git bash-->change to local directory --> run git clone command-->after cloning finished--->cick on file-->open Folder-->select your cloned repository**
+### **In VS Code-->click on terminal-->new terminal-->select git bash-->change to local directory --> run git clone command-->after cloning finished--->cick on file-->open Folder-->select your cloned repository**
 ```shell
 git clone https://github.com/RupaEnggVille/PRODUCTION-EKS.git
 
